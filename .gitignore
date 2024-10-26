@@ -44,6 +44,7 @@ obj
 packages
 
 .idea/
+.vs
 /docs/.idea/
 Recyclica/estrutura_projeto.txt
 Recyclica/export-tree.ps1
