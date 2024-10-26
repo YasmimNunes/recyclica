@@ -1,0 +1,20 @@
+@model Recyclica.Models.Cliente
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Excluir Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Excluir Cliente</h2>
+
+<h3>Você tem certeza que deseja excluir este cliente?</h3>
+<div>
+    <h4>@Model.Nome</h4>
+</div>
+
+<form asp-action="Delete" asp-route-ClienteId="@Model.ClienteId">
+    <input type="hidden" asp-for="ClienteId" />
+    <input type="submit" value="Excluir" class="btn btn-danger" /> |
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

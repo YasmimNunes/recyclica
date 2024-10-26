@@ -1,0 +1,46 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<Recyclica.Models.RelatorioProdutos>
+
+@{
+    ViewData["Title"] = "Relatório de Produtos";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Use seu layout padrão
+}
+
+<div class="container mt-5">
+    <h1 class="text-center">Relatório de Produtos</h1>
+    <table class="table table-striped table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>Nome Produto</th>
+                <th>Tipo</th>
+                <th>Peso</th>
+                <th>Cliente</th>
+                <th>Data da Venda</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var relatorio in Model)
+                {
+                    <tr>
+                        <td>@relatorio.NomeProduto</td>
+                        <td>@relatorio.Tipo</td>
+                        <td>@relatorio.Peso Kg</td>
+                        <td>@relatorio.Cliente</td>
+                        <td>@relatorio.DataSaida?.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center">Nenhum registro encontrado.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="text-center">
+        <a href="@Url.Action("Index", "Produtos")" class="btn btn-primary">Voltar</a>
+    </div>
+</div>

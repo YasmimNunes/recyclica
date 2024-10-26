@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Produtos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<Recyclica.Models.MateriaPrima>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="container p-5">
+    <div class="mb-5 text-center">
+        <h1>Matéria Prima</h1>
+    </div>
+    <div class="text-center">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Quantidade disponível em estoque</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var materiaPrima in Model)
+                    {
+                        <tr>
+                            <td>@materiaPrima.Tipo</td>
+                            <td>@materiaPrima.Peso Kg</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        @if (User.IsInRole("Gerente de operações") || User.IsInRole("Operador de piso"))
+        {
+            <div class="d-flex gap-5 mt-5">
+                <a class="btn btn-success w-50" asp-area="MateriaPrima" asp-controller="MateriaPrima" asp-action="CadastrarMaterial">Cadastrar Material</a>
+                <a class="btn btn-success w-50" asp-area="MateriaPrima" asp-controller="MateriaPrima" asp-action="MaterialCadastrado">Materiais Cadastrados</a>
+            </div>
+        }
+        else
+        {
+            <a class="btn btn-success w-100" asp-area="MateriaPrima" asp-controller="MateriaPrima" asp-action="MaterialCadastrado">Materiais Cadastrados</a>
+        }
+    </div>
+</div>

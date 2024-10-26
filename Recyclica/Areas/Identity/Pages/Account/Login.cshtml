@@ -1,0 +1,53 @@
+﻿@page
+@model LoginModel
+
+@{
+ViewData["Title"] = "Entrar";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center">@ViewData["Title"]</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <section>
+                <form id="account" method="post">
+                    <h2 class="h5 text-center">Use uma conta local para entrar</h2>
+                    <hr />
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+                    <!-- Entrada de Email -->
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Email" class="form-control @((ViewData.ModelState["Input.Email"]?.Errors.Count ?? 0) > 0 ? "is-invalid" : "")" autocomplete="username" aria-required="true" placeholder="nome@exemplo.com" />
+                        <label asp-for="Input.Email">Email</label>
+                        <div class="invalid-feedback">
+                            <span asp-validation-for="Input.Email"></span>
+                        </div>
+                    </div>
+
+                    <!-- Entrada de Senha -->
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Password" class="form-control @((ViewData.ModelState["Input.Password"]?.Errors.Count ?? 0) > 0 ? "is-invalid" : "")" autocomplete="current-password" aria-required="true" placeholder="senha" />
+                        <label asp-for="Input.Password">Senha</label>
+                        <div class="invalid-feedback">
+                            <span asp-validation-for="Input.Password"></span>
+                        </div>
+                    </div>
+
+                    <!-- Botão de Envio -->
+                    <div>
+                        <button id="login-submit" type="submit" class="btn btn-primary w-100">Entrar</button>
+                    </div>
+
+                    <!-- Links -->
+                    <div class="mt-3 text-center">
+                        <p><a id="forgot-password" asp-page="./ForgotPassword">Esqueceu sua senha?</a></p>
+                        <p><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Registrar-se como um novo usuário</a></p>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

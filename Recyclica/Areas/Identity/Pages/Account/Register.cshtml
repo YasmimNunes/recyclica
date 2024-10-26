@@ -1,0 +1,79 @@
+﻿@page
+@model Recyclica.Areas.Identity.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Registrar";
+}
+
+<h1 class="text-center mt-5">@ViewData["Title"]</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="p-4 rounded shadow bg-light">
+            <h2 class="text-center">Criar uma nova conta</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+            <!-- Campo de Nome Completo -->
+            <div class="form-floating mb-3">
+                <input asp-for="Input.FullName" class="form-control" autocomplete="name" aria-required="true" placeholder="Nome Completo" />
+                <label asp-for="Input.FullName">Nome Completo</label>
+                <span asp-validation-for="Input.FullName" class="text-danger"></span>
+            </div>
+
+            <!-- Campo de Email -->
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="nome@exemplo.com" />
+                <label asp-for="Input.Email">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <!-- Campo de Senha -->
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="senha" />
+                <label asp-for="Input.Password">Senha</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <!-- Campo de Confirmação de Senha -->
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="confirme a senha" />
+                <label asp-for="Input.ConfirmPassword">Confirmar Senha</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <!-- Campo de Telefone -->
+            <div class="form-floating mb-3">
+                <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="tel" aria-required="true" placeholder="(XX) XXXXX-XXXX" />
+                <label asp-for="Input.PhoneNumber">Telefone</label>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <!-- Dropdown para seleção de cargos -->
+            <div class="form-floating mb-3">
+                <select asp-for="Input.RoleId" asp-items="Model.RoleList" class="form-control">
+                    <option value="">Selecione o Cargo</option>
+                </select>
+                <label asp-for="Input.RoleId">Cargo</label>
+                <span asp-validation-for="Input.RoleId" class="text-danger"></span>
+            </div>
+
+            <!-- Botão de Envio -->
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Registrar</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <!-- Máscara de Telefone -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Aplicar máscara e definir a máscara pré-formatada
+        $('#Input_PhoneNumber').mask('(00) 00000-0000', {
+            placeholder: "(XX) XXXXX-XXXX"
+        });
+    });
+</script>
+}

@@ -1,0 +1,57 @@
+# Ignorar arquivos de compilação e diretórios específicos dentro da pasta Recyclica
+Recyclica/bin/
+Recyclica/obj/
+Recyclica/out/
+
+# Ignorar configurações do Visual Studio e outras IDEs
+Recyclica/.vs/
+Recyclica/.vs/**
+Recyclica/.vscode/
+Recyclica/.idea/
+
+# Logs
+Recyclica/*.log
+
+# Diretórios de backup
+Recyclica/_backup/
+
+Recyclica/*.user
+Recyclica/*.suo
+Recyclica/*.userosscache
+Recyclica/*.sln.docstates
+
+# Arquivos temporários
+Recyclica/*.tmp
+Recyclica/*.temp
+
+# Arquivos de lock
+Recyclica/project.lock.json
+Recyclica/project.fragment.lock.json
+
+# Diretório de pacotes do NuGet
+Recyclica/packages/
+Recyclica/*.nupkg
+
+# Diretórios gerados por ferramentas
+Recyclica/**/[Dd]ebug/
+Recyclica/**/[Rr]elease/
+Recyclica/**/[Xx]64/
+Recyclica/**/[Aa]md64/
+
+
+bin
+obj
+packages
+
+.idea/
+/docs/.idea/
+Recyclica/estrutura_projeto.txt
+Recyclica/export-tree.ps1
+Recyclica/Recyclica/obj/*
+Recyclica/Recyclica.DataAccess/obj/
+Recyclica/Recyclica.Models/obj/
+Recyclica/Recyclica.Utils/obj/
+estrutura_projeto.txt
+export-tree.ps1
+Recyclica/**/bin/
+Recyclica/**/obj/

@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@using Recyclica.Areas.MateriaPrima.ViewModels
+@{
+    ViewData["Title"] = "Deletar Material";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model MaterialMateriaPrimaViewModel
+
+<div class="container p-5">
+    <div class="mb-5 text-center">
+        <h1>Deletar Material</h1>
+    </div>
+    <form method="post" asp-controller="MateriaPrima" asp-action="Deletar">
+        <input type="hidden" asp-for=Material.MaterialId>
+        <h2>Tem certeza que deseja excluir o registro abaixo?</h2>
+        <div class="mb-3">
+            <label for="Nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" asp-for="Material.Nome" id="Nome" placeholder="Garrafa Pet" disabled>
+            <span class="text-danger" asp-validation-for="Material.Nome"></span>
+        </div>
+        <div class="d-flex flex-row gap-3">
+            <div class="mb-3 flex-fill">
+                <label for="Tipo" class="form-label">Tipo</label>
+
+                <select class="form-select" aria-label=Seleção do tipo" asp-for="Material.Tipo" disabled>
+                    @foreach (var materiaPrima in Model.MateriasPrima)
+                    {
+                        if (materiaPrima.Tipo == Model.Material.Tipo)
+                        {
+                            <option selected>@materiaPrima.Tipo</option>
+                        }
+                        else
+                        {
+                            <option>@materiaPrima.Tipo</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="mb-3 flex-fill">
+                <label for="Peso" class="form-label">Peso</label>
+                <input type="number" class="form-control" asp-for="Material.Peso" id="Peso" placeholder="50" disabled>
+                <span class="text-danger" asp-validation-for="Material.Peso"></span>
+            </div>
+        </div>
+        <input type="hidden" class="form-control" value="@UserManager.GetUserId(User)" asp-for=Material.UserId>
+
+        <button type="submit" class="btn btn-danger w-100" asp-route-pesoAntigo="@Model.Material.Peso" asp-route-tipo="@Model.Material.Tipo">Deletar Material</button>
+        <div class="d-flex gap-5 mt-5">
+            <a class="btn btn-success w-50" asp-area="MateriaPrima" asp-controller="MateriaPrima" asp-action="Index">Matéria Prima</a>
+            <a class="btn btn-success w-50" asp-area="MateriaPrima" asp-controller="MateriaPrima" asp-action="MaterialCadastrado">Materiais Cadastrados</a>
+        </div>
+    </form>
+</div>

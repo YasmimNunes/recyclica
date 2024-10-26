@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recyclica", "Recyclica\Recyclica.csproj", "{CC943537-8FB9-4471-AB71-91D1C1C1A8B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recyclica.DataAccess", "Recyclica.DataAccess\Recyclica.DataAccess.csproj", "{1DE2D39C-A837-48B1-BA43-A090C9DF3001}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recyclica.Models", "Recyclica.Models\Recyclica.Models.csproj", "{054BA8CE-1D8D-4A36-B6C1-05890577C2F6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recyclica.Utils", "Recyclica.Utils\Recyclica.Utils.csproj", "{7A9F0B5B-5448-45D4-B174-E9691EE5AA8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC943537-8FB9-4471-AB71-91D1C1C1A8B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC943537-8FB9-4471-AB71-91D1C1C1A8B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC943537-8FB9-4471-AB71-91D1C1C1A8B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC943537-8FB9-4471-AB71-91D1C1C1A8B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DE2D39C-A837-48B1-BA43-A090C9DF3001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DE2D39C-A837-48B1-BA43-A090C9DF3001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DE2D39C-A837-48B1-BA43-A090C9DF3001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DE2D39C-A837-48B1-BA43-A090C9DF3001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{054BA8CE-1D8D-4A36-B6C1-05890577C2F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{054BA8CE-1D8D-4A36-B6C1-05890577C2F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{054BA8CE-1D8D-4A36-B6C1-05890577C2F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{054BA8CE-1D8D-4A36-B6C1-05890577C2F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A9F0B5B-5448-45D4-B174-E9691EE5AA8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A9F0B5B-5448-45D4-B174-E9691EE5AA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A9F0B5B-5448-45D4-B174-E9691EE5AA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A9F0B5B-5448-45D4-B174-E9691EE5AA8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35897778-07B6-411C-8C78-23FC9B5351B1}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,96 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model Recyclica.Models.Produto
+
+@{
+    ViewData["Title"] = "Tela Novo Produto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Gerar Novo Produto</h1>
+</div>
+<div>
+    <form asp-action="NovoProduto" method="post" onsubmit="return validarPeso();">
+        @Html.AntiForgeryToken()
+
+        <div class="mb-3">
+            <label class="form-label">Matéria Prima</label>
+            <select class="form-select" id="materiaPrima" name="Tipo" required>
+                <option value="">Selecione uma matéria-prima</option>
+                @if (ViewBag.MateriasPrimas != null)
+                {
+                    foreach (var materia in ViewBag.MateriasPrimas)
+                    {
+                        <option value="@materia.Tipo">@materia.Tipo</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Peso em Estoque</label>
+            <input class="form-control" id="pesoEstoque" disabled readonly />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Nome do Produto</label>
+            <input class="form-control" asp-for="NomeProduto" required placeholder="Digite o nome do Produto"oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '');" />
+            @Html.ValidationMessageFor(m => m.NomeProduto)
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Peso do Produto</label>
+            <input class="form-control" id="peso" name="Peso" placeholder="Digite o peso do produto" required oninput="this.value = this.value.replace(/[^0-9.,]/g, '');" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Data de fabricação</label>
+            <input class="form-control" value="@DateTime.Now.ToString("dd/MM/yyyy")" disabled readonly />
+            <input type="hidden" name="DataEntrada" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Gerar Produto</button>
+        <a asp-action="Index" asp-controller="Produtos" class="btn btn-primary">Voltar</a>
+    </form>
+</div>
+
+<script>
+    // Mapeia pesos em estoque para cada matéria-prima
+    var pesoEstoqueMap = {};
+    @if (ViewBag.MateriasPrimas != null)
+    {
+        foreach (var materia in ViewBag.MateriasPrimas)
+        {
+            <text>pesoEstoqueMap['@materia.Tipo'] = @materia.Peso; </text>
+        }
+    }
+
+        document.getElementById("materiaPrima").addEventListener("change", function () {
+            var pesoEstoque = 0;
+
+            var materiaPrimaSelecionada = this.value;
+
+            if (pesoEstoqueMap[materiaPrimaSelecionada] !== undefined) {
+                pesoEstoque = pesoEstoqueMap[materiaPrimaSelecionada];
+            }
+
+            document.getElementById("pesoEstoque").value = (pesoEstoque > 0 ? pesoEstoque + ' kg' : '');
+        });
+
+    function validarPeso() {
+        var peso = parseFloat(document.getElementById("peso").value.replace(',', '.'));
+        var pesoEstoque = parseFloat(document.getElementById("pesoEstoque").value) || 0;
+
+        // Remove " kg" para comparação
+        if (pesoEstoque > 0) {
+            pesoEstoque = pesoEstoque.replace(' kg', '');
+        }
+
+        if (peso > pesoEstoque) {
+            alert("O peso do produto não pode ser maior que o peso em estoque (" + pesoEstoque + " kg).");
+            return false; // Impede o envio do formulário
+        }
+        return true; // Permite o envio do formulário
+    }
+</script>

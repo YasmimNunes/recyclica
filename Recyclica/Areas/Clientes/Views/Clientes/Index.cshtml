@@ -1,0 +1,50 @@
+@using Recyclica.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Clientes</h2>
+
+<!-- Formulário de Pesquisa -->
+<div class="d-flex justify-content-between mb-3">
+    <div>
+        <a asp-controller="Clientes" asp-action="Create" class="btn btn-primary">Adicionar Cliente</a>
+    </div>
+    <form asp-action="Index" method="get" class="form-inline d-flex">
+        <input type="text" name="searchString" class="form-control mr-2" placeholder="Pesquisar por nome..." value="@ViewData["CurrentFilter"]" />
+        <button type="submit" class="btn btn-primary">Pesquisar</button>
+    </form>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>NomeCliente</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            @foreach (var cliente in Model)
+            {
+                <tr>
+                    <td>@cliente.Nome</td>
+                    <td>
+                        <a asp-controller="Clientes" asp-action="Edit" asp-route-ClienteId="@cliente.ClienteId" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-controller="Clientes" asp-action="Delete" asp-route-ClienteId="@cliente.ClienteId" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este cliente?');">Excluir</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="2" class="text-center">Nenhum cliente encontrado.</td>
+            </tr>
+        }
+    </tbody>
+</table>
