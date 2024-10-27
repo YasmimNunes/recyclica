@@ -20,13 +20,13 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Restore dependencies
-        run: dotnet restore Recyclica/Recyclica.csproj
+        run: dotnet restore
 
       - name: Build project
-        run: dotnet build Recyclica/Recyclica.csproj --configuration Release --no-restore
+        run: dotnet build --configuration Release --no-restore
 
       - name: Publish project
-        run: dotnet publish Recyclica/Recyclica.csproj --configuration Release --no-build --output ${{ github.workspace }}/publish
+        run: dotnet publish --configuration Release --no-build --output ${{ github.workspace }}/publish
 
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
@@ -41,20 +41,21 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write
+      id-token: write # Necessário para solicitar o JWT
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: .net-app
-
+          
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B26DC8AB60BB494393F8007B16F9782C }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_DDED907D65D043249C2A158B7ACF4413 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_E70F562F116445868755AB8800137931 }}
+          client-secret: ${{ secrets.AZUREAPPSERVICE_CLIENTSECRET }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
