@@ -1,0 +1,13 @@
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Models\bin\Debug\net8.0\Recyclica.Models.deps.json
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Models\bin\Debug\net8.0\Recyclica.Models.dll
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Models\bin\Debug\net8.0\Recyclica.Models.pdb
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Models\obj\Debug\net8.0\Recyclica.Models.csproj.AssemblyReference.cache
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Models\obj\Debug\net8.0\Recyclica.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Models\obj\Debug\net8.0\Recyclica.Models.AssemblyInfoInputs.cache
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Models\obj\Debug\net8.0\Recyclica.Models.AssemblyInfo.cs
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Models\obj\Debug\net8.0\Recyclica.Models.csproj.CoreCompileInputs.cache
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Models\obj\Debug\net8.0\Recyclica.Models.sourcelink.json
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Models\obj\Debug\net8.0\Recyclica.Models.dll
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Models\obj\Debug\net8.0\refint\Recyclica.Models.dll
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Models\obj\Debug\net8.0\Recyclica.Models.pdb
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Models\obj\Debug\net8.0\ref\Recyclica.Models.dll

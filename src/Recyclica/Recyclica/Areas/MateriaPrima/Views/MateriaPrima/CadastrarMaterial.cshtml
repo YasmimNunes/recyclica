@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@using Recyclica.Areas.MateriaPrima.ViewModels
+@{
+    ViewData["Title"] = "Cadastrar Material";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model MaterialMateriaPrimaViewModel
+
+<div class="container p-5">
+    <div class="mb-5 text-center">
+        <h1>Cadastrar Material</h1>
+    </div>
+    <form method="post" asp-controller="MateriaPrima" asp-action="CadastrarMaterial">
+        <input type="hidden" value="@UserManager.GetUserId(User)" asp-for=Material.UserId>
+        <div class="mb-3">
+            <label for="Nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" asp-for="Material.Nome" id="Nome" placeholder="Garrafa Pet">
+            <span class="text-danger" asp-validation-for="Material.Nome"></span>
+        </div>
+        <div class="d-flex flex-row gap-3">
+            <div class="mb-3 flex-fill">
+                <label for="Tipo" class="form-label">Tipo</label>
+
+                <select class="form-select" aria-label=Seleção do tipo" asp-for="Material.Tipo">
+                    @foreach (var materiaPrima in Model.MateriasPrima)
+                    {
+                        <option>@materiaPrima.Tipo</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-3 flex-fill">
+                <label for="Peso" class="form-label">Peso</label>
+                <input type="number" step="0.01" onkeydown="return event.key !== 'e' && event.key !== 'E' && event.key !== '+' && event.key !== '-'" class="form-control" asp-for="Material.Peso" id="Peso" placeholder="50">
+                <span class="text-danger" asp-validation-for="Material.Peso"></span>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Enviar Cadastro</button>
+        <div class="d-flex gap-5 mt-5">
+            <a class="btn btn-success w-50" asp-area="MateriaPrima" asp-controller="MateriaPrima" asp-action="Index">Matéria Prima</a>
+            <a class="btn btn-success w-50" asp-area="MateriaPrima" asp-controller="MateriaPrima" asp-action="MaterialCadastrado">Materiais Cadastrados</a>
+        </div>
+    </form>
+</div>

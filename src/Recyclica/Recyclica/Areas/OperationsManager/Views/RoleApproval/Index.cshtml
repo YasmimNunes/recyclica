@@ -1,0 +1,165 @@
+﻿@model Recyclica.Areas.OperationsManager.Controllers.RoleApprovalAndUsersViewModel
+
+<div class="text-center">
+    <h1>Gestão</h1>
+    <br>
+    <br>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert" id="successMessage">
+            @TempData["SuccessMessage"]
+        </div>
+
+        <script type="text/javascript">
+            // Definindo o tempo em milissegundos para a mensagem desaparecer (por exemplo, 5 segundos)
+            setTimeout(function() {
+                var message = document.getElementById("successMessage");
+                if (message) {
+                    message.style.display = 'none';
+                }
+            }, 5000); // 5000 milissegundos = 5 segundos
+        </script>
+    }
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th colspan="6" class="text-center" style="background-color: #d6d8db;">Lista de Usuários Pendentes</th>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Cargo</th>
+                @if (User.IsInRole("Gerente de operações"))
+                {
+                    <th>Ação</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var approval in Model.RoleApprovals)
+            {
+                <tr>
+                    <td>@approval.UserName</td>
+                    <td>@approval.Email</td>
+                    <td>@approval.RoleName</td>
+                    <td>
+                        @if (User.IsInRole("Gerente de operações"))
+                        {
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approveModal-@approval.Id">Aprovar</button>
+                            <!-- Modal de Aprovação -->
+                            <div class="modal fade" id="approveModal-@approval.Id" tabindex="-1" aria-labelledby="approveModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="approveModalLabel">Confirmação de Aprovação</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Tem certeza de que deseja aprovar o usuário "@approval.UserName" para o cargo "@approval.RoleName"?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form asp-action="Approve" method="post">
+                                                <input type="hidden" name="id" value="@approval.Id" />
+                                                <form method="post" asp-action="Approve" asp-controller="RoleApproval" asp-route-id="@approval.Id">
+                                                    <button type="submit" class="btn btn-success">Sim, aprovar</button>
+                                                </form>
+                                            </form>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Botão de Não Aprovar -->
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#rejectModal-@approval.Id">Rejeitar</button>
+                            <!-- Modal de Reprovação -->
+                            <div class="modal fade" id="rejectModal-@approval.Id" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="rejectModalLabel">Confirmação de Reprovação</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Tem certeza de que deseja rejeitar o usuário "@approval.UserName" para o cargo "@approval.RoleName"?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form asp-action="Reject" method="post">
+                                                <input type="hidden" name="id" value="@approval.Id" />
+                                                <form method="post" asp-action="Reject" asp-controller="RoleApproval" asp-route-id="@approval.Id">
+                                                    <button type="submit" class="btn btn-success">Sim, rejeitar</button>
+                                                </form>
+                                            </form>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <br>
+    <hr style="border: 3px solid black;" />
+    <br>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th colspan="6" class="text-center" style="background-color: #d6d8db;">Lista de Usuários Aprovados</th>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Cargo</th>
+                @if (User.IsInRole("Gerente de operações"))
+                {
+                    <th>Ação</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>@user.RoleName</td>
+                    <td>
+                        @if (User.IsInRole("Gerente de operações"))
+                        {
+                            <a asp-action="Editar" asp-route-id="@user.Id" class="btn btn-info">Editar</a>
+                            <!-- Botão Deletar com Modal -->
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-@user.Id">Excluir</button>
+
+                            <!-- Modal de Confirmação para Deletar -->
+                            <div class="modal fade" id="deleteModal-@user.Id" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel">Confirmação de Exclusão</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Tem certeza de que deseja excluir o usuário "@user.UserName"?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form method="post" asp-action="Delete" asp-controller="RoleApproval" asp-route-id="@user.Id">
+                                                <button type="submit" class="btn btn-success">Sim, excluir</button>
+                                            </form>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

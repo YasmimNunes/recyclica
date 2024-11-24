@@ -1,0 +1,88 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Recyclica.Models.Produto
+
+@{
+    ViewData["Title"] = "Tela deletar Produto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Deletar Produto</h1>
+</div>
+<div>
+    <div class="mb-3">
+        <label class="form-label">Nome</label>
+        <input id="inputNome" class="form-control" asp-for="NomeProduto" disabled readonly>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Tipo</label>
+        <input id="inputTipo" class="form-control" asp-for="Tipo" disabled readonly>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Peso</label>
+        <input id="inputPeso" class="form-control" asp-for="Peso" disabled readonly>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Data de fabricação</label>
+        <input class="form-control" asp-for="DataEntrada" disabled readonly>
+    </div>
+    <br>
+    <!-- Botão para acionar o modal -->
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">Deletar Produto</button>
+    <a asp-action="Index" asp-controller="Produtos" class="btn btn-primary">Voltar</a> 
+    <br>
+    <br>
+    <div id="loadingSpinner" class="spinner-border text-danger invisible" role="status">
+    </div>
+    <span id="loadingMessage" class="sr-only invisible">Deletando dados...</span>
+</div>
+
+<!-- Modal de Confirmação -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmação de Deleção</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Tem certeza de que deseja deletar o produto <strong>@Model.NomeProduto</strong>?
+            </div>
+            <div class="modal-footer">
+                <form method="post" asp-action="ConfirmarDeletar">
+                    <input type="hidden" name="id" value="@Model.ProdutoId" />
+                    <button id="botaoSimDeletar" type="submit" class="btn btn-primary">Sim</button>
+                </form>
+                <button id="botaoCancelar" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var botaoSimDeletar = document.querySelector('#botaoSimDeletar');
+    var botaoCancelar = document.querySelector('#botaoCancelar');
+    var loadingSpinner = document.querySelector('#loadingSpinner');
+    var loadingMessage = document.querySelector('#loadingMessage');
+
+    var inputTipo = document.querySelector('#inputTipo');
+    var inputNome = document.querySelector('#inputNome');
+    var inputPeso = document.querySelector('#inputPeso');
+
+    botaoSimDeletar.addEventListener('click', function () {
+
+        if (
+            inputTipo.value != "" &&
+            inputNome.value != "" &&
+            inputPeso.value != "" &&
+            inputPeso.value != 0
+        ) {
+            setTimeout(function () {
+                botaoSimDeletar.disabled = true;
+                botaoCancelar.disabled = true;
+            }, 1);
+            loadingSpinner.classList.remove('invisible');
+            loadingMessage.classList.remove('invisible');
+        }
+    });
+</script>

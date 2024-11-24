@@ -1,0 +1,95 @@
+﻿@model Recyclica.Models.Produto
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Tela Vender Produto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Vender Produto</h1>
+</div>
+<div>
+    <form asp-action="RegistrarVenda" method="post" onsubmit="return validarPeso();">
+        <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input class="form-control" value="@Model.NomeProduto" disabled readonly>
+            <input type="hidden" name="NomeProduto" value="@Model.NomeProduto" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tipo</label>
+            <input class="form-control" value="@Model.Tipo" disabled readonly>
+            <input type="hidden" name="Tipo" value="@Model.Tipo" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Peso Disponível</label>
+            <input class="form-control" value="@Model.Peso kg" disabled readonly>
+            <input type="hidden" id="pesoDisponivel" value="@Model.Peso" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Peso a Vender</label>
+            <input id="inputPeso" class="form-control" id="peso" name="Peso" placeholder="Digite o peso a vender" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Data de fabricação</label>
+            <input class="form-control" value="@Model.DataEntrada?.ToString("dd/MM/yyyy")" disabled readonly>
+            <input type="hidden" name="DataEntrada" value="@Model.DataEntrada?.ToString("yyyy-MM-dd")" />
+        </div>
+        <select id="inputCliente" class="form-select" name="ClienteId" required>
+            <option value="">Selecione um cliente</option>
+            @if (ViewBag.Clientes != null)
+            {
+                foreach (var cliente in ViewBag.Clientes)
+                {
+                    <option value="@cliente.ClienteId">@cliente.Nome (@cliente.CNPJ_CPF)</option>
+                }
+            }
+        </select>
+
+
+        <input type="hidden" name="ProdutoId" value="@Model.ProdutoId" />
+        <br>
+        <button id="botaoRegistrarVenda" type="submit" class="btn btn-primary">Registrar Venda</button>
+        <a asp-action="Index" asp-controller="Produtos" id="botaoVoltar" class="btn btn-primary">Voltar</a>
+        <br>
+        <br>
+        <div id="loadingSpinner" class="spinner-border text-success invisible" role="status">
+        </div>
+        <span id="loadingMessage" class="sr-only invisible">Registrando venda...</span>
+    </form>
+</div>
+
+<script>
+    function validarPeso() {
+        var peso = parseFloat(document.getElementById("peso").value);
+        var pesoDisponivel = parseFloat(document.getElementById("pesoDisponivel").value);
+
+        if (peso > pesoDisponivel) {
+            alert("O peso a ser vendido não pode ser maior que o peso disponível (" + pesoDisponivel + " kg).");
+            return false; // Impede o envio do formulário
+        }
+        return true; // Permite o envio do formulário
+    }
+
+
+    var botaoRegistrarVenda = document.querySelector('#botaoRegistrarVenda');
+    var loadingSpinner = document.querySelector('#loadingSpinner');
+    var loadingMessage = document.querySelector('#loadingMessage');
+
+    var inputPeso = document.querySelector('#inputPeso');
+    var inputCliente = document.querySelector('#inputCliente')
+
+    botaoRegistrarVenda.addEventListener('click', function () {
+
+        if (
+            inputCliente.value != "" &&
+            inputPeso.value != "" &&
+            inputPeso.value != 0
+        ) {
+            setTimeout(function () {
+                botaoRegistrarVenda.disabled = true;
+            }, 1);
+            loadingSpinner.classList.remove('invisible');
+            loadingMessage.classList.remove('invisible');
+        }
+    });
+</script>

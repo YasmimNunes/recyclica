@@ -1,0 +1,12 @@
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Utils\bin\Debug\net8.0\Recyclica.Utils.deps.json
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Utils\bin\Debug\net8.0\Recyclica.Utils.dll
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Utils\bin\Debug\net8.0\Recyclica.Utils.pdb
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Utils\obj\Debug\net8.0\Recyclica.Utils.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Utils\obj\Debug\net8.0\Recyclica.Utils.AssemblyInfoInputs.cache
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Utils\obj\Debug\net8.0\Recyclica.Utils.AssemblyInfo.cs
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Utils\obj\Debug\net8.0\Recyclica.Utils.csproj.CoreCompileInputs.cache
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Utils\obj\Debug\net8.0\Recyclica.Utils.sourcelink.json
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Utils\obj\Debug\net8.0\Recyclica.Utils.dll
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Utils\obj\Debug\net8.0\refint\Recyclica.Utils.dll
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Utils\obj\Debug\net8.0\Recyclica.Utils.pdb
+C:\Users\yasmi\OneDrive\Documentos\pmv-ads-2024-2-e2-proj-int-t1-projeto-reciclagem\src\Recyclica\Recyclica.Utils\obj\Debug\net8.0\ref\Recyclica.Utils.dll

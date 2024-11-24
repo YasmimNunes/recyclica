@@ -1,0 +1,44 @@
+@model Recyclica.Models.Cliente
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Editar Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar Cliente</h2>
+
+<form asp-action="Edit" asp-route-ClienteId="@Model.ClienteId" method="post">
+    <input type="hidden" asp-for="ClienteId" />
+    <div class="form-group mb-3">
+        <div class="mb-3">
+            <label for="Nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" asp-for="Nome" id="Nome">
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+        <div class="mb-3 flex-fill">
+            <label for="CNPJ_CPF" class="form-label">CPF / CNPJ</label>
+            <input type="text" onkeyup="mascaraCPF_CNPJ(this)" oninput="mascaraCPF_CNPJ(this)" class="form-control" asp-for="CNPJ_CPF" id="CNPJ_CPF">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <span asp-validation-for="CNPJ_CPF" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Salvar" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </div>
+</form>
+
+<script>
+    function mascaraCPF_CNPJ(entrada) {
+        //Filtra todos os caracteres que não são dígitos de forma global.
+        var cpfCnpj = entrada.value.replace(/\D/g, "");
+        if (cpfCnpj.length <= 11) {
+            entrada.value = cpfCnpj.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+        } else if (cpfCnpj.length <= 14) {
+            entrada.value = cpfCnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
+        } else {
+            entrada.value = cpfCnpj;
+        }
+    }
+</script>

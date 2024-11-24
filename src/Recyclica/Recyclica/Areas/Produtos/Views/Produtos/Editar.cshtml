@@ -1,0 +1,64 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Recyclica.Models.Produto
+
+@{
+    ViewData["Title"] = "Tela editar Produto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Editar Produto</h1>
+</div>
+<div>
+    <form asp-action="Atualizar">
+        <input type="hidden" asp-for="ProdutoId" />
+        <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input id="inputNome" class="form-control" asp-for="NomeProduto" placeholder="Nome">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tipo</label>
+            <input id="inputTipo" class="form-control" asp-for="Tipo" placeholder="Tipo">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Peso</label>
+            <input id="inputPeso" class="form-control" asp-for="Peso" placeholder="Peso">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Data de fabricação</label>
+            <input class="form-control" disabled readonly value="@Model.DataEntrada?.ToString("dd/MM/yyyy")" /> 
+        </div>
+        <button id="botaoAtualizar" type="submit" class="btn btn-primary">Atualizar</button>
+        <a asp-action="Index" asp-controller="Produtos" class="btn btn-primary">Voltar</a>
+    </form>
+    <br>
+    <div id="loadingSpinner" class="spinner-border text-success invisible" role="status">
+    </div>
+    <span id="loadingMessage" class="sr-only invisible">Atualizando dados...</span>
+</div>
+
+<script>
+    var botaoAtualizar = document.querySelector('#botaoAtualizar');
+    var loadingSpinner = document.querySelector('#loadingSpinner');
+    var loadingMessage = document.querySelector('#loadingMessage');
+
+    var inputTipo = document.querySelector('#inputTipo');
+    var inputNome = document.querySelector('#inputNome');
+    var inputPeso = document.querySelector('#inputPeso');
+
+    botaoAtualizar.addEventListener('click', function () {
+
+        if (
+            inputTipo.value != "" &&
+            inputNome.value != "" &&
+            inputPeso.value != "" &&
+            inputPeso.value != 0
+        ) {
+            setTimeout(function () {
+                botaoAtualizar.disabled = true;
+            }, 1);
+            loadingSpinner.classList.remove('invisible');
+            loadingMessage.classList.remove('invisible');
+        }
+    });
+</script>

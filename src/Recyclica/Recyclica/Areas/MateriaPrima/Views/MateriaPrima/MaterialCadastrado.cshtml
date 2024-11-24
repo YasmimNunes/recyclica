@@ -1,0 +1,98 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Recyclica.Models
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Material Cadastrado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<Material>
+
+<div class="container p-5">
+    <div class="mb-5 text-center">
+        <h1>Materiais Cadastrados</h1>
+    </div>
+    <div class="text-center">
+        <form method="get" asp-action="MaterialCadastrado">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="termoPesquisado" placeholder="Buscar por Nome, Tipo, Peso ou Data..." aria-label="Buscar materiais" />
+                <button type="submit" class="btn btn-outline-secondary">Buscar</button>
+                <a class="btn btn btn-secondary" asp-area="MateriaPrima" asp-controller="MateriaPrima" asp-action="MaterialCadastrado">Exibir Todos</a>
+            </div>
+        </form>
+
+        @if(TempData["MensagemSucesso"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["MensagemSucesso"]
+            </div>
+        }
+
+        @if (TempData["MensagemSucessoDel"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["MensagemSucessoDel"]
+            </div>
+        }
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Peso Cadastrado</th>
+                    <th scope="col">Data Cadastro</th>
+                    @if (User.IsInRole("Gerente de operações") || User.IsInRole("Operador de piso"))
+                    {
+                        <th scope="col">Ações</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var material in Model)
+                    {
+                        <tr>
+                            <td>@material.Nome</td>
+                            <td>@material.Tipo</td>
+                            <td>@material.Peso Kg</td>
+                            <td>@material.DataEntrada.ToString()</td>
+                            @if (User.IsInRole("Gerente de operações") || User.IsInRole("Operador de piso"))
+                            {
+                                <td>
+                                    <a role="button" class="btn btn-info" asp-controller="MateriaPrima" asp-action="Editar" asp-route-materialId="@material.MaterialId">Editar</a>
+                                    <a role="button" class="btn btn-secondary" asp-controller="MateriaPrima" asp-action="Deletar" asp-route-materialId="@material.MaterialId">Deletar</a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        @if (User.IsInRole("Gerente de operações") || User.IsInRole("Operador de piso"))
+        {
+            <div class="d-flex gap-5 mt-5">
+                <a class="btn btn-success w-50" asp-area="MateriaPrima" asp-controller="MateriaPrima" asp-action="CadastrarMaterial">Cadastrar Material</a>
+                <a class="btn btn-success w-50" asp-area="MateriaPrima" asp-controller="MateriaPrima" asp-action="Index">Materia Prima</a>
+            </div>
+        }
+        else
+        {
+            <a class="btn btn-success w-100" asp-area="MateriaPrima" asp-controller="MateriaPrima" asp-action="Index">Materia Prima</a>
+        }
+
+    </div>
+</div>
+
+<script>
+    setTimeout(function () {
+        $(".alert").fadeOut("Slow", function(){
+            $(this).alert("close");
+        })
+    }, 3500)
+</script>

@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bem-Vindo ao Recyclica</h1>
+
+    @if (TempData["CadastroSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["CadastroSucesso"]
+        </div>
+    }
+</div>
+<div>
+    <img src="~/img/LogoRecyclicaLeaf.svg" class="mx-auto d-block mt-30 w-50" alt="Logo Recyclica Leaf"/>
+</div>
+
+<script>
+    setTimeout(function () {
+        $(".alert").fadeOut("Slow", function () {
+            $(this).alert("close");
+        })
+    }, 3500)
+</script>
+
